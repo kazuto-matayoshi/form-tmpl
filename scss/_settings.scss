@@ -15,10 +15,10 @@
 ::           Original setting           ::
 ::::::::::::::::::::::::::::::::::::::::*/
 	// オリジナルラジオボタンを使うかどうかの設定(true OR false)
-	$radio_original: true;
+	$radio_original: false;
 
 	// オリジナルチェックボタンを使うかどうかの設定(true OR false)
-	$check_original: true;
+	$check_original: false;
 
 	// オリジナルのセレクトを使うかどうかの設定(true OR false)
 	$select_original: false;
@@ -50,7 +50,6 @@
 
 		// input[type="email"]
 		@include input_add(email) {
-			background: green;
 		}
 	}
 
