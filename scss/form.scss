@@ -1,0 +1,251 @@
+@charset "utf-8";
+@import "mixin";
+@import "settings";
+
+// mixin
+
+@mixin radio_check_common($setting) {
+	@content;
+	visibility: hidden;
+	padding: 0;
+	margin: 0;
+	border: 0;
+	position: absolute;
+	& + label {
+		position: relative;
+		padding-left: calc( #{map-get($setting, beforeSize)} + #{map-get($setting, padding)} );
+		line-height: 2;
+		&:before {
+			content: '';
+			height: map-get($setting, beforeSize);
+			width: map-get($setting, beforeSize);
+			border: map-get($setting, border);
+			background: map-get($setting, background);
+			position: absolute;
+			top: 50%;
+			left: 0;
+			transform: translate( 0, -50% );
+		}
+		&:after {
+			content: '';
+			display: none;
+		}
+	}
+}
+
+@mixin input_radio_set() {
+	@content;
+	& + label {
+		&:before {
+			border-radius: 50%;
+		}
+		&:after {
+			@if $radio_type == font {
+				@if $radio-fType == fa {
+					@include fa( $radio-fCode );
+				} @elseif $radio-fType == im {
+					@include im( #{$radio-fCode} );
+				}
+				text-align: center;
+				font-size: $radio-fSize;
+				color: $radio-fColor;
+				width: $radio-fSize;
+				height: $radio-fSize;
+				left: ( $radio-beforeSize - $radio-fSize ) / 2;
+			} @else if $radio_type == img {
+				width: $radio-afterSize-img;
+				height: $radio-afterSize-img;
+				background: url(#{$radio-after-markerColor-img}) center no-repeat;
+				background-size: contain;
+				left: ( $radio-beforeSize - $radio-afterSize-img ) / 2;
+			} @else if $radio_type == css {
+				width: $radio-afterSize-css;
+				height: $radio-afterSize-css;
+				background: $radio-after-markerColor-css;
+				border-radius: 50%;
+				left: ( $radio-beforeSize - $radio-afterSize-css ) / 2;
+			}
+			position: absolute;
+			top: 50%;
+			transform: translate( 0, -50% );
+		}
+	}
+	// &.checked {
+	&:checked {
+		& + label {
+			&:before {
+				background: $radio-checked-before-bg_color;
+			}
+			&:after {
+				display: block;
+			}
+		}
+	}
+}
+
+@mixin input_check_set() {
+	@content;
+	& + label {
+		&:after {
+			@if $check_type == font {
+				@if $check-fType == fa {
+					@include fa( $check-fCode );
+				} @elseif $check-fType == im {
+					@include im( $check-fCode );
+				}
+				text-align: center;
+				font-size: $check-faSize;
+				color: $check-faColor;
+				width: $check-faSize;
+				height: $check-faSize;
+				top: 50%;
+				left: ( $check-beforeSize - $check-faSize ) / 2;
+				transform: translate( 0, -50% );
+			} @else if $check_type == img {
+				width: $check-afterSize-img;
+				height: $check-afterSize-img;
+				background: url( #{$check-after-markerColor-img} ) center no-repeat;
+				background-size: contain;
+				top: 50%;
+				left: ( $check-beforeSize - $check-afterSize-img ) / 2;
+				transform: translate( 0, -50% );
+			} @else if $check_type == css {
+				width: $check-afterSize-css;
+				height: $check-afterSize-css / 2;
+				border: $check-after-markerSize-css solid $check-after-markerColor-css;
+				border-top: none;
+				border-right: none;
+				top: calc( 50% - ( #{$check-afterSize-css} / 8 ) );
+				left: ( $check-beforeSize - $check-afterSize-css ) / 2;
+				transform: translate( 0, -50% ) rotate( -45deg );
+			}
+			position: absolute;
+		}
+	}
+	// &.checked {
+	&:checked {
+		& + label {
+			&:before {
+				background: #FFF;
+			}
+			&:after {
+				display: block;
+			}
+		}
+	}
+}
+
+/**
+ * form common
+ */
+
+form {
+	/* form common */
+	*,
+	*:before,
+	*:after {
+		box-sizing: border-box;
+	}
+
+	input,
+	select,
+	textarea {
+		@if $border {
+			border: $border;
+		} @else {
+			border: 1px solid #a9a9a9;
+		}
+		@if $background {
+			background: $background;
+		}
+		box-shadow: none;
+		&.inText {
+			background: #FFF;
+		}
+	}
+
+	input {
+		@if $input_appearance {
+			&:not([type="radio"]):not([type="checkbox"]) {
+				// iOSの角丸除去
+				-webkit-appearance:none;
+				-moz-appearance:none;
+				appearance:none;
+				&::-ms-expand {
+					display: none;
+				}
+			}
+		}
+		@include input_custum();
+	}
+
+	@if $radio_original {
+		input[type="radio"] {
+			-webkit-appearance:none;
+			-moz-appearance:none;
+			appearance:none;
+			@include radio_check_common($radio_common_setting);
+			@include input_radio_set();
+			@include radio_add();
+		}
+	}
+
+	@if $check_original {
+		input[type="checkbox"] {
+			-webkit-appearance:none;
+			-moz-appearance:none;
+			appearance:none;
+			@include radio_check_common($check_common_setting);
+			@include input_check_set();
+			@include check_add();
+		}
+	}
+
+	select {
+		@if $select_appearance {
+			// ▼マークの削除
+			-webkit-appearance:none;
+			-moz-appearance:none;
+			appearance:none;
+			&::-ms-expand {
+				display: none;
+			}
+		}
+		@if $select_original {
+			@include select_add();
+		}
+	}
+
+	textarea {
+		@if $textarea_appearance {
+			// iOSの角丸除去
+			-webkit-appearance:none;
+			-moz-appearance:none;
+			appearance:none;
+		}
+		@if $textarea_original {
+			@include textarea_add();
+		}
+	}
+
+	button {
+		@if $border {
+			border: $border;
+		} @else {
+			border: 1px solid #a9a9a9;
+		}
+		@if $background {
+			background: $background;
+		}
+		box-shadow: none;
+		@if $button_appearance {
+			// iOSの角丸除去
+			-webkit-appearance:none;
+			-moz-appearance:none;
+			appearance:none;
+		}
+		@if $button_original {
+			@include textarea_add();
+		}
+	}
+}

@@ -1,0 +1,130 @@
+@charset "utf-8";
+
+//————————————————————————————————————————————
+// FontAwesome
+//————————————————————————————————————————————
+
+$fa: FontAwesome;
+
+@mixin fa($fontCode) {
+	content: $fontCode;
+	font-family: $fa;
+	line-height: 1;
+}
+
+//————————————————————————————————————————————
+// icomoon
+//————————————————————————————————————————————
+
+$im: icomoon;
+
+@mixin im($fontCode) {
+	content: $fontCode;
+	font-family: $im;
+	line-height: 1;
+}
+
+
+//————————————————————————————————————————————
+// break point
+//————————————————————————————————————————————
+
+@mixin breakMax($max, $min: false) {
+	@if $min == false {
+		@media screen and (max-width: $max) { @content; }
+	} @else {
+		@media screen and (max-width: $max) and (min-width: $min) { @content; }
+	}
+}
+
+@mixin breakMin( $min, $max: false ) {
+	@if $max == false {
+		@media screen and (min-width: $min) { @content; }
+	} @else {
+		@media screen and (max-width: $max) and (min-width: $min) { @content; }
+	}
+}
+
+//————————————————————————————————————————————
+//   ／＼
+// ／    ＼三角形を作るcss
+// ￣￣￣￣
+//————————————————————————————————————————————
+
+@mixin tri-base {
+	@content;
+	width: 0;
+	height: 0;
+	border-style: solid;
+}
+
+// top
+@mixin tri-t($width, $height, $color) {
+	@content;
+	@include tri-base;
+	border-width: 0 $height/2 $width $height/2;
+	border-color: transparent transparent $color transparent;
+}
+
+// right
+@mixin tri-r($width, $height, $color) {
+	@content;
+	@include tri-base;
+	border-width: $height/2 0 $height/2 $width;
+	border-color: transparent transparent transparent $color;
+}
+
+// bottom
+@mixin tri-b($width, $height, $color) {
+	@content;
+	@include tri-base;
+	border-width: $width $height/2 0 $height/2;
+	border-color: $color transparent transparent transparent;
+}
+
+// left
+@mixin tri-l($width, $height, $color) {
+	@content;
+	@include tri-base;
+	border-width: $height/2 $width $height/2 0;
+	border-color: transparent $color transparent transparent;
+}
+
+// top-right
+@mixin tri-tr($width, $color) {
+	@content;
+	@include tri-base;
+	border-width: 0 $width $width 0;
+	border-color: transparent $color transparent transparent;
+}
+
+// bottom-right
+@mixin tri-br($width, $color) {
+	@content;
+	@include tri-base;
+	border-width: 0 0 $width $width;
+	border-color: transparent transparent $color transparent;
+}
+
+// bottom-left
+@mixin tri-bl($width, $color) {
+	@content;
+	@include tri-base;
+	border-width: $width 0 0 $width;
+	border-color: transparent transparent transparent $color;
+}
+
+// top-left
+@mixin tri-tl($width, $color) {
+	@content;
+	@include tri-base;
+	border-width: $width $width 0 0;
+	border-color: $color transparent transparent transparent;
+}
+
+//————————————————————————————————————————————
+// グラデーション
+//————————————————————————————————————————————
+
+@mixin gradient($direction, $color) {
+}

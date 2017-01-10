@@ -1,0 +1,243 @@
+@charset "utf-8";
+@import "mixin";
+/*::::::::::::::::::::::::::::::::::::::::
+::                common                ::
+::::::::::::::::::::::::::::::::::::::::*/
+	// borderプロパティの設定
+	// $border: 1px solid #ddd;
+	$border: null;
+
+	// backgroundプロパティの値を設定
+	$background: #d6d6d6;
+	// $background: null;
+
+/*::::::::::::::::::::::::::::::::::::::::
+::           Original setting           ::
+::::::::::::::::::::::::::::::::::::::::*/
+	// オリジナルラジオボタンを使うかどうかの設定(true OR false)
+	$radio_original: true;
+
+	// オリジナルチェックボタンを使うかどうかの設定(true OR false)
+	$check_original: true;
+
+	// オリジナルのセレクトを使うかどうかの設定(true OR false)
+	$select_original: false;
+
+	// オリジナルのテキストエリア使うかどうかの設定を(true OR false)
+	$textarea_original: false;
+
+	// オリジナルボタンを使うかどうかの設定(true OR false)
+	$button_original: false;
+
+/*::::::::::::::::::::::::::::::::::::::::
+::                input                 ::
+::::::::::::::::::::::::::::::::::::::::*/
+	// iOSの角丸になる現象、inputの上部に影ができる現象を切るかどうかの設定(true OR false)
+	$input_appearance: false;
+
+	// 追加用関数
+	@mixin input_add($type) {
+		&[type=#{$type}] {
+			@content;
+		}
+	}
+
+	// css追加部分
+	@mixin input_custum () {
+		// input[type="text"]
+		@include input_add(text) {
+		}
+
+		// input[type="email"]
+		@include input_add(email) {
+			background: green;
+		}
+	}
+
+/*::::::::::::::::::::::::::::::::::::::::
+::             input radio              ::
+::::::::::::::::::::::::::::::::::::::::*/
+	@mixin radio_add() {
+		@content;
+	}
+
+	// オリジナルのチェックボタンの設定を使うかどうか(font OR img OR css)
+	$radio_type: font;
+
+	// -----------------------------------
+	// input radio common
+	// -----------------------------------
+
+	// ラジオボタンの大きさを設定
+	$radio-beforeSize: 21px;
+
+	// 背景色の設定
+	$radio-before-bg_color: #d2ffd6;
+
+	// checked時の背景色の設定
+	$radio-before-border: 1px solid #ddd;
+
+	// checked時の背景色の設定
+	$radio-checked-before-bg_color: #FFF;
+
+	// ラジオボタンとの余白
+	$radio-margin: 5px;
+
+	// -----------------------------------
+	// font
+	// -----------------------------------
+	// fontTypeの設定
+	// FontAwesome -> fa, icomoon -> im
+	$radio-fType: fa;
+
+	// font codeの設定
+	$radio-fCode: '\f111';
+
+	// fontSizeの設定
+	$radio-fSize: 13px;
+
+	// fontSizeの設定
+	$radio-fColor: #6C6C6C;
+
+	// -----------------------------------
+	// img
+	// -----------------------------------
+
+	// ラジオボタンのチェックマークの大きさを設定
+	$radio-afterSize-img: 13px;
+
+	// 画像の設定
+	$radio-after-markerColor-img: '/path/to/img.jpg';
+
+	// -----------------------------------
+	// css
+	// -----------------------------------
+
+	// ラジオボタンのチェックマークの大きさを設定
+	$radio-afterSize-css: 13px;
+
+	// backgroundの設定
+	$radio-after-markerColor-css: #6C6C6C;
+
+	// -----------------------------------
+	// input radio end
+	// -----------------------------------
+
+/*::::::::::::::::::::::::::::::::::::::::
+::             input check              ::
+::::::::::::::::::::::::::::::::::::::::*/
+	@mixin check_add() {
+		@content;
+	}
+
+	// オリジナルのチェックボタンの設定を使うかどうか(font OR img OR css)
+	$check_type: css;
+
+	// -----------------------------------
+	// input check common
+	// -----------------------------------
+
+	// checkボタンの大きさを設定
+	$check-beforeSize: 21px;
+
+	// 背景色の設定
+	$check-before-bg_color: #d2ffd6;
+
+	// checked時の背景色の設定
+	$check-before-border: 1px solid #ddd;
+
+	// checked時の背景色の設定
+	$check-checked-before-bg_color: #FFF;
+
+	// チェックボックスとの余白
+	$check-margin: 5px;
+
+	// -----------------------------------
+	// font
+	// -----------------------------------
+	// fontTypeの設定
+	// FontAwesome -> fa, icomoon -> im
+	$check-fType: fa;
+
+	// font codeの設定
+	$check-fCode: '\f00c';
+
+	// fontSizeの設定
+	$check-fSize: 13px;
+
+	// fontSizeの設定
+	$check-fColor: #6C6C6C;
+
+	// -----------------------------------
+	// img
+	// -----------------------------------
+
+	// checkボタンのチェックマークの大きさを設定
+	$check-afterSize-img: 13px;
+
+	// 画像の設定
+	$check-after-markerColor-img: '/path/to/img.jpg';
+
+	// -----------------------------------
+	// css
+	// -----------------------------------
+
+	// checkボタンのチェックマークの大きさを設定
+	$check-afterSize-css: 13px;
+
+	// チェックマークの太さの設定
+	$check-after-markerSize-css: 1px;
+
+	// チェックマークの色の設定
+	$check-after-markerColor-css: #6C6C6C;
+
+	// -----------------------------------
+	// input check end
+	// -----------------------------------
+
+/*::::::::::::::::::::::::::::::::::::::::
+::                select                ::
+::::::::::::::::::::::::::::::::::::::::*/
+	// selectの▼を消すかどうかの設定(true OR false)
+	$select_appearance: false;
+
+	@mixin select_add() {
+	}
+
+/*::::::::::::::::::::::::::::::::::::::::
+::               textarea               ::
+::::::::::::::::::::::::::::::::::::::::*/
+	// iOSの角丸になる現象を切るかどうかの設定(true OR false)
+	$textarea_appearance: false;
+
+	@mixin textarea_add() {
+		resize: vertical;
+	}
+
+/*::::::::::::::::::::::::::::::::::::::::
+::                button                ::
+::::::::::::::::::::::::::::::::::::::::*/
+	// 現象を切るかどうかの設定(true OR false)
+	$button_appearance: false;
+
+	@mixin button_add() {
+	}
+
+// ************************************ //
+// **     setting variable arrays    ** //
+// ************************************ //
+		// background: $radio-before-bg_color,
+	$radio_common_setting:(
+		beforeSize: $radio-beforeSize,
+		border: $radio-before-border,
+		background: $background,
+		padding: $radio-margin,
+	);
+
+		// background: $check-before-bg_color,
+	$check_common_setting:(
+		beforeSize: $check-beforeSize,
+		border: $check-before-border,
+		background: $background,
+		padding: $check-margin,
+	);
