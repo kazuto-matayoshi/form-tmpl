@@ -15,9 +15,15 @@
 
 	$( checkTarget ).on('change', function(){
 		if ( $(this).val() ) {
-			if ( $(this).context.type == 'radio' ) {
-				var name = $(this).context.name;
-				$('input[type="radio"][name="'+name+'"]').addClass('inText');
+			if ( $(this).context.type == 'radio' || $(this).context.type == 'checkbox' ) {
+				var type   = $(this).context.type;
+				var name   = $(this).context.name;
+				var target = $('input[type="'+type+'"][name="'+name+'"]');
+				if ( target.is(':checked') ) {
+					target.addClass('inText');
+				} else {
+					target.removeClass('inText');
+				}
 			} else {
 				$(this).addClass('inText');
 			}
