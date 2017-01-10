@@ -70,14 +70,17 @@
 			transform: translate( 0, -50% );
 		}
 	}
-	// &.checked {
 	&:checked {
+		& + label {
+			&:after {
+				display: block;
+			}
+		}
+	}
+	&.inText {
 		& + label {
 			&:before {
 				background: $radio-checked-before-bg_color;
-			}
-			&:after {
-				display: block;
 			}
 		}
 	}
