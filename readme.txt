@@ -14,7 +14,7 @@ datepickerを対応させる場合は
 datepickerを対応させる場合は
 対応させたいinputに『class="validate[required]"』と入れてください。
 validationEngineのカスタマイズや、表示テキスト、ポジションなどは
-こちら（http://studio-key.com/1139.html）を参考にしてください。
+こちら（ http://studio-key.com/1139.html ）を参考にしてください。
 
 -------------------------------------------------------------
 
