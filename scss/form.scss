@@ -125,14 +125,17 @@
 			position: absolute;
 		}
 	}
-	// &.checked {
 	&:checked {
 		& + label {
-			&:before {
-				background: #FFF;
-			}
 			&:after {
 				display: block;
+			}
+		}
+	}
+	&.inText {
+		& + label {
+			&:before {
+				background: $radio-checked-before-bg_color;
 			}
 		}
 	}
