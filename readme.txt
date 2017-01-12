@@ -2,7 +2,6 @@ formのcss作成手順書、他
 調整方法の共有をいたします。
 
 
-
 【html編】
 
 日付の入力のサポートをしてくれる『jquery.ui.datepicker.js』,
@@ -13,12 +12,17 @@ datepickerを対応させる場合は
 
 datepickerを対応させる場合は
 対応させたいinputに『class="validate[required]"』と入れてください。
-validationEngineのカスタマイズや、表示テキスト、ポジションなどは
+validationEngineのカスタマイズや、表示テキスト、エラー文の位置などは
 こちら（ http://studio-key.com/1139.html ）を参考にしてください。
+
+また、htmlファイル内にも直接コメントが残ってますので
+確認お願いします。
+
 
 -------------------------------------------------------------
 
 【scss編】
+
 _setting.scssを編集し、form.cssを作成します。
 
 各変数の設定を変更することによって
@@ -55,12 +59,12 @@ type="radio"
 type="datetime"
 type="date"
 type="month"
-type="week" ※SP未対応？
+type="week"
 type="time"
 type="datetime-local"
 type="number"
 type="range"
-type="color" ※SP未対応？
+type="color"
 type="file"
 type="image"
 type="submit"
@@ -68,10 +72,6 @@ type="reset"
 type="button"
 
 :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-
-もし、それでも不明点などがあれば
-声かけていただけると改修いたしますので
-声掛けのほどよろしくお願いします。
 
 -------------------------------------------------------------
 
@@ -107,6 +107,7 @@ form input,
 form select,
 form textarea {
   border: 1px solid #a9a9a9;
+  background: #d6d6d6;
   box-shadow: none;
 }
 
@@ -116,5 +117,48 @@ form textarea.inText {
   background: #FFF;
 }
 
+form button {
+  border: 1px solid #a9a9a9;
+  background: #d6d6d6;
+  box-shadow: none;
+}
+
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+【js編】
+-- 入力補助（背景色）について --
+
+SCSSの$backgroundで設定した色が背景色の初期値になりますが、
+もし、入力後の背景色を変更したい場合は
+from.jsの『valCheckTarget』の値を変更してください。
+テキスト入力後、ラジオ選択後に『.inText』のクラスが追加され背景色が白くなります。
+セレクタの指定方法はcssと同じか書き方で問題ありません。
+
+
+-- カレンダーについて --
+
+何かカスタマイズを行う場合には
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+	$( '.datepicker' ).datepicker({
+		// 日付の有効範囲
+		minDate: '0',
+	});
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+とあるので『minDate: '0',』のように記入してください。
+
+-- バリデーションについて --
+
+何かカスタマイズを行う場合には
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+	$(function(){
+		$("form").validationEngine( 'attach', {
+			autoPositionUpdate: true,
+			promptPosition: "centerRight",
+		});
+	});
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+とあるので『autoPositionUpdate: true,』等のように記入してください。
