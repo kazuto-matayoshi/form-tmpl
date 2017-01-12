@@ -7,14 +7,11 @@
 $fa: FontAwesome;
 
 @mixin fa($fontCode) {
-	content: $fontCode;
-
-	// 指定方法 → $fontCode: \fxxx;
-	// content: unquote("\"") + $fontCode + unquote("\"");
-
-	// 指定方法 → $fontCode: fxxx;
-	// content: unquote("\"") + unquote(str-insert($fontCode, "\\", 1)) + unquote("\"");
-
+	@if str-index($fontCode, '\\' ) {
+		content: unquote("\"") + unquote($fontCode) + unquote("\"");
+	} @else {
+		content: unquote("\"") + unquote(str-insert($fontCode, "\\", 1)) + unquote("\"");
+	}
 	font-family: $fa;
 	line-height: 1;
 }
@@ -23,17 +20,22 @@ $fa: FontAwesome;
 // icomoon
 //————————————————————————————————————————————
 
+// @font-face {
+// 	font-family: 'icomoon';
+// 	src: url("../fonts/icomoon.eot");
+// 	src: url("../fonts/icomoon.eot") format("embedded-opentype"), url("../fonts/icomoon.ttf") format("truetype"), url("../fonts/icomoon.woff") format("woff"), url("../fonts/icomoon.svg") format("svg");
+// 	font-weight: normal;
+// 	font-style: normal;
+// }
+
 $im: icomoon;
 
 @mixin im($fontCode) {
-	content: $fontCode;
-
-	// 指定方法 → $fontCode: \fxxx;
-	// content: unquote("\"") + $fontCode + unquote("\"");
-
-	// 指定方法 → $fontCode: fxxx;
-	// content: unquote("\"") + unquote(str-insert($fontCode, "\\", 1)) + unquote("\"");
-
+	@if str-index($fontCode, '\\' ) {
+		content: unquote("\"") + unquote($fontCode) + unquote("\"");
+	} @else {
+		content: unquote("\"") + unquote(str-insert($fontCode, "\\", 1)) + unquote("\"");
+	}
 	font-family: $im;
 	line-height: 1;
 }
