@@ -234,103 +234,103 @@ if ( ( $confirmDsp == 0 || $sendmail == 1 ) && $empty_flag != 1 ) {
 } else if ( $confirmDsp == 1 ) {
 /* ▼▼▼送信確認画面のレイアウト※編集可 オリジナルのデザインも適用可能▼▼▼ */
 ?>
-<!DOCTYPE HTML>
-<html lang="ja">
-	<head>
-		<meta charset="UTF-8">
-		<title></title>
-	</head>
-	<body>
-		<!-- ▼************ 送信内容表示部 ※編集は自己責任で ************ ▼-->
-		<?php if ( $empty_flag == 1 ) : ?>
-			<div align="center">
-				<h4 class="errs_h4">入力にエラーがあります。<br>下記をご確認の上「前画面に戻る」ボタンより修正をお願い致します。</h4>
-				<div class="errs"><?php echo $errm; ?></div>
-				<p class="formBackBtn">
-					<input type="button" value=" 前画面に戻る " onClick="history.back()">
-				</p>
-			</div>
-		<?php else : ?>
-			<form action="<?php echo h($_SERVER['SCRIPT_NAME']); ?>" method="POST" class="mailForm">
-				<table class="comTable">
-					<tr class="tr">
-						<th class="th"><span class="text">ご氏名</span><span class="must">必須</span></th>
-						<td class="td"><?php echo $_POST['name']; ?><input type="hidden" name="お名前" value="<?php echo $_POST['name']; ?>" /></td>
-					</tr>
-					<tr class="tr">
-						<th class="th"><span class="text">フリガナ</span><span class="must">必須</span></th>
-						<td class="td"><?php echo $_POST['phonetic']; ?><input type="hidden" name="フリガナ" value="<?php echo $_POST['phonetic']; ?>" /></td>
-					</tr>
-					<tr class="tr">
-						<th class="th"><span class="text">電話番号</span><span class="must">必須</span></th>
-						<td class="td"><?php echo $_POST['tel']; ?><input type="hidden" name="電話番号" value="<?php echo $_POST['tel']; ?>" /></td>
-					</tr>
-					<tr class="tr">
-						<th class="th"><span class="text">性別</span><span class="must">必須</span></th>
-						<td class="td"><?php echo $_POST['sex']; ?><input type="hidden" name="性別" value="<?php echo $_POST['sex']; ?>" /></td>
-					</tr>
-					<tr class="tr">
-						<th class="th"><span class="text">年代</span><span class="must">必須</span></th>
-						<td class="td"><?php echo $_POST['old']; ?><input type="hidden" name="年代" value="<?php echo $_POST['old']; ?>" /></td>
-					</tr>
-					<tr class="tr">
-						<th class="th"><span class="text">メールアドレス</span><span class="must">必須</span></th>
-						<td class="td"><?php echo $_POST['mail']; ?><input type="hidden" name="メールアドレス" value="<?php echo $_POST['mail']; ?>" /></td>
-					</tr>
-					<tr class="tr">
-						<th class="th"><span class="text">ご希望サロン</span><span class="must">必須</span></th>
-						<td class="td"><?php echo $_POST['hope']; ?><input type="hidden" name="ご希望サロン" value="<?php echo $_POST['hope']; ?>" /></td>
-					</tr>
-					<tr class="tr">
-						<th class="th"><span class="text">ご希望日時<br class="pc">
-							（第一希望）</span><span class="must">必須</span></th>
-						<td class="td tdStyle01"><?php echo $_POST['time_1']; ?> <?php echo $_POST['time_1_select']; ?><input type="hidden" name="ご希望日時 （第一希望）" value="<?php echo $_POST['time_1'].' '.$_POST['time_1_select']; ?>" /></td>
-					</tr>
-					<tr class="tr">
-						<th class="th"><span class="text">ご希望日時<br class="pc">
-							（第二希望）</span><span class="must">必須</span></th>
-						<td class="td tdStyle01"><?php echo $_POST['time_2']; ?> <?php echo $_POST['time_2_select']; ?><input type="hidden" name="ご希望日時 （第二希望）" value="<?php echo $_POST['time_2'].' '.$_POST['time_2_select']; ?>" /></td>
-					</tr>
-					<?php if ($_POST['other']) : ?>
-					<tr class="tr">
-						<th class="th"><span class="text">その他</span></th>
-						<td class="td"><?php echo $_POST['other']; ?><input type="hidden" name="その他" value="<?php echo $_POST['other']; ?>" /></td>
-					</tr>
-					<?php endif; ?>
-					<tr class="tr">
-						<th class="th"><span class="text">個人情報について</span><span class="must">必須</span></th>
-						<td class="td">同意する</td>
-					</tr>
-				</table>
-				<ul class="submit">
-					<li class="retry">
-						<input type="button" class="button" value="修正する" onClick="history.back()">
-					</li>
-					<li class="send">
-						<input type="hidden" name="mail_set" value="confirm_submit">
-						<input type="hidden" name="httpReferer" value="<?php echo h($_SERVER['HTTP_REFERER']);?>">
-						<input class="button" type="submit" value="送信する">
-					</li>
-				</ul>
-			</form>
-			<?php
-				//入力内容を表示
-				// echo confirmOutput($_POST);
-			?>
-			<ul class="listUl">
-				<li class="text">※予約日時の確認は、必ず弊社よりご連絡申し上げます。弊社からの連絡をもって予約日が決まります。</li>
-				<li class="text">※希望日時の前日までに、弊社より連絡がない場合は、お手数ではございますが、&lt;0120-300-969&gt; までご一報いただければと存じます。</li>
-				<li class="text">※ご希望日時でお取り出来ない場合もございますので、あらかじめご了承ください。</li>
-			</ul>
-		<?php endif; ?>
-		<!-- ▲ *********** 送信内容確認部 ※編集は自己責任で ************ ▲-->
-		<script>
-		if(((navigator.userAgent.indexOf('iPhone') > 0) || (navigator.userAgent.indexOf('Android') > 0) && (navigator.userAgent.indexOf('Mobile') > 0) && (navigator.userAgent.indexOf('SC-01C') == -1))){
-		document.write('<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">');
-		}
-		</script>
-	</body>
-</html>
+  <!DOCTYPE HTML>
+  <html lang="ja">
+  	<head>
+  		<meta charset="UTF-8">
+  		<title></title>
+  	</head>
+  	<body>
+  		<!-- ▼************ 送信内容表示部 ※編集は自己責任で ************ ▼-->
+  		<?php if ( $empty_flag == 1 ) : ?>
+  			<div align="center">
+  				<h4 class="errs_h4">入力にエラーがあります。<br>下記をご確認の上「前画面に戻る」ボタンより修正をお願い致します。</h4>
+  				<div class="errs"><?php echo $errm; ?></div>
+  				<p class="formBackBtn">
+  					<input type="button" value=" 前画面に戻る " onClick="history.back()">
+  				</p>
+  			</div>
+  		<?php else : ?>
+  			<form action="<?php echo h($_SERVER['SCRIPT_NAME']); ?>" method="POST" class="mailForm">
+  				<table class="comTable">
+  					<tr class="tr">
+  						<th class="th"><span class="text">ご氏名</span><span class="must">必須</span></th>
+  						<td class="td"><?php echo $_POST['name']; ?><input type="hidden" name="お名前" value="<?php echo $_POST['name']; ?>" /></td>
+  					</tr>
+  					<tr class="tr">
+  						<th class="th"><span class="text">フリガナ</span><span class="must">必須</span></th>
+  						<td class="td"><?php echo $_POST['phonetic']; ?><input type="hidden" name="フリガナ" value="<?php echo $_POST['phonetic']; ?>" /></td>
+  					</tr>
+  					<tr class="tr">
+  						<th class="th"><span class="text">電話番号</span><span class="must">必須</span></th>
+  						<td class="td"><?php echo $_POST['tel']; ?><input type="hidden" name="電話番号" value="<?php echo $_POST['tel']; ?>" /></td>
+  					</tr>
+  					<tr class="tr">
+  						<th class="th"><span class="text">性別</span><span class="must">必須</span></th>
+  						<td class="td"><?php echo $_POST['sex']; ?><input type="hidden" name="性別" value="<?php echo $_POST['sex']; ?>" /></td>
+  					</tr>
+  					<tr class="tr">
+  						<th class="th"><span class="text">年代</span><span class="must">必須</span></th>
+  						<td class="td"><?php echo $_POST['old']; ?><input type="hidden" name="年代" value="<?php echo $_POST['old']; ?>" /></td>
+  					</tr>
+  					<tr class="tr">
+  						<th class="th"><span class="text">メールアドレス</span><span class="must">必須</span></th>
+  						<td class="td"><?php echo $_POST['mail']; ?><input type="hidden" name="メールアドレス" value="<?php echo $_POST['mail']; ?>" /></td>
+  					</tr>
+  					<tr class="tr">
+  						<th class="th"><span class="text">ご希望サロン</span><span class="must">必須</span></th>
+  						<td class="td"><?php echo $_POST['hope']; ?><input type="hidden" name="ご希望サロン" value="<?php echo $_POST['hope']; ?>" /></td>
+  					</tr>
+  					<tr class="tr">
+  						<th class="th"><span class="text">ご希望日時<br class="pc">
+  							（第一希望）</span><span class="must">必須</span></th>
+  						<td class="td tdStyle01"><?php echo $_POST['time_1']; ?> <?php echo $_POST['time_1_select']; ?><input type="hidden" name="ご希望日時 （第一希望）" value="<?php echo $_POST['time_1'].' '.$_POST['time_1_select']; ?>" /></td>
+  					</tr>
+  					<tr class="tr">
+  						<th class="th"><span class="text">ご希望日時<br class="pc">
+  							（第二希望）</span><span class="must">必須</span></th>
+  						<td class="td tdStyle01"><?php echo $_POST['time_2']; ?> <?php echo $_POST['time_2_select']; ?><input type="hidden" name="ご希望日時 （第二希望）" value="<?php echo $_POST['time_2'].' '.$_POST['time_2_select']; ?>" /></td>
+  					</tr>
+  					<?php if ($_POST['other']) : ?>
+  					<tr class="tr">
+  						<th class="th"><span class="text">その他</span></th>
+  						<td class="td"><?php echo $_POST['other']; ?><input type="hidden" name="その他" value="<?php echo $_POST['other']; ?>" /></td>
+  					</tr>
+  					<?php endif; ?>
+  					<tr class="tr">
+  						<th class="th"><span class="text">個人情報について</span><span class="must">必須</span></th>
+  						<td class="td">同意する</td>
+  					</tr>
+  				</table>
+  				<ul class="submit">
+  					<li class="retry">
+  						<input type="button" class="button" value="修正する" onClick="history.back()">
+  					</li>
+  					<li class="send">
+  						<input type="hidden" name="mail_set" value="confirm_submit">
+  						<input type="hidden" name="httpReferer" value="<?php echo h($_SERVER['HTTP_REFERER']);?>">
+  						<input class="button" type="submit" value="送信する">
+  					</li>
+  				</ul>
+  			</form>
+  			<?php
+  				//入力内容を表示
+  				// echo confirmOutput($_POST);
+  			?>
+  			<ul class="listUl">
+  				<li class="text">※予約日時の確認は、必ず弊社よりご連絡申し上げます。弊社からの連絡をもって予約日が決まります。</li>
+  				<li class="text">※希望日時の前日までに、弊社より連絡がない場合は、お手数ではございますが、&lt;0120-300-969&gt; までご一報いただければと存じます。</li>
+  				<li class="text">※ご希望日時でお取り出来ない場合もございますので、あらかじめご了承ください。</li>
+  			</ul>
+  		<?php endif; ?>
+  		<!-- ▲ *********** 送信内容確認部 ※編集は自己責任で ************ ▲-->
+  		<script>
+  		if(((navigator.userAgent.indexOf('iPhone') > 0) || (navigator.userAgent.indexOf('Android') > 0) && (navigator.userAgent.indexOf('Mobile') > 0) && (navigator.userAgent.indexOf('SC-01C') == -1))){
+  		document.write('<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">');
+  		}
+  		</script>
+  	</body>
+  </html>
 <?php
 /* ▲▲▲送信確認画面のレイアウト ※オリジナルのデザインも適用可能▲▲▲ */
 }
@@ -339,48 +339,49 @@ if ( ( $jumpPage == 0 && $sendmail == 1 ) || ( $jumpPage == 0 && ( $confirmDsp =
 
 /* ▼▼▼送信完了画面のレイアウト 編集可 ※送信完了後に指定のページに移動しない場合のみ表示▼▼▼ */
 ?>
-<!DOCTYPE HTML>
-<html lang="ja">
-	<head>
-		<meta charset="UTF-8">
-		<title></title>
-	</head>
-	<body>
-		<div align="center">
-			<?php if ( $empty_flag == 1 ) : ?>
-				<h4>入力にエラーがあります。下記をご確認の上「戻る」ボタンにて修正をお願い致します。</h4>
-				<div style="color:red"><?php echo $errm; ?></div>
-				<br /><br /><input type="button" value=" 前画面に戻る " onClick="history.back()">
-			<?php else : ?>
-				送信ありがとうございました。<br />
-				送信は正常に完了しました。<br /><br />
-				<a href="<?php echo $site_top ;?>">トップページへ戻る&raquo;</a>
-			<?php endif; ?>
-		</div>
-	</body>
-</html>
-<?php 
+  <!DOCTYPE HTML>
+  <html lang="ja">
+  	<head>
+  		<meta charset="UTF-8">
+  		<title></title>
+  	</head>
+  	<body>
+  		<div align="center">
+  			<?php if ( $empty_flag == 1 ) : ?>
+  				<h4>入力にエラーがあります。下記をご確認の上「戻る」ボタンにて修正をお願い致します。</h4>
+  				<div style="color:red"><?php echo $errm; ?></div>
+  				<br /><br /><input type="button" value=" 前画面に戻る " onClick="history.back()">
+  			<?php else : ?>
+  				送信ありがとうございました。<br />
+  				送信は正常に完了しました。<br /><br />
+  				<a href="<?php echo $site_top ;?>">トップページへ戻る&raquo;</a>
+  			<?php endif; ?>
+  		</div>
+  	</body>
+  </html>
+<?php
 /* ▲▲▲送信完了画面のレイアウト 編集可 ※送信完了後に指定のページに移動しない場合のみ表示▲▲▲ */
 }
 
 // 確認画面無しの場合の表示、指定のページに移動する設定の場合、エラーチェックで問題が無ければ指定ページヘリダイレクト
 else if ( ( $jumpPage == 1 && $sendmail == 1 ) || $confirmDsp == 0 ) {
-	if ( $empty_flag == 1 ) { ?>
-<!DOCTYPE HTML>
-<html lang="ja">
-	<head>
-		<meta charset="UTF-8">
-		<title></title>
-	</head>
-	<body>
-		<div align="center">
-			<h4>入力にエラーがあります。下記をご確認の上「戻る」ボタンにて修正をお願い致します。</h4>
-			<div style="color:red"><?php echo $errm; ?></div>
-				<br /><br /><input type="button" value=" 前画面に戻る " onClick="history.back()">
-			</div>
-		</div>
-	</body>
-</html>
+	if ( $empty_flag == 1 ) {
+?>
+  <!DOCTYPE HTML>
+  <html lang="ja">
+  	<head>
+  		<meta charset="UTF-8">
+  		<title></title>
+  	</head>
+  	<body>
+  		<div align="center">
+  			<h4>入力にエラーがあります。下記をご確認の上「戻る」ボタンにて修正をお願い致します。</h4>
+  			<div style="color:red"><?php echo $errm; ?></div>
+  				<br /><br /><input type="button" value=" 前画面に戻る " onClick="history.back()">
+  			</div>
+  		</div>
+  	</body>
+  </html>
 <?php 
 	} else { header("Location: ".$thanksPage); }
 }

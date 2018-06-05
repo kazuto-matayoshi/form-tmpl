@@ -5,17 +5,16 @@
 		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
 		<!-- ▼ cssコピーペースト部分 ▼ -->
-		<link rel="stylesheet" href="./css/form.css">
-		<link rel="stylesheet" href="./css/jquery-ui.css">
-		<link rel="stylesheet" href="./css/jquery.ui.datepicker.css">
-		<link rel="stylesheet" href="./css/validationEngine.jquery.css">
+		<link rel="stylesheet" href="./assets/css/form.css">
+		<link rel="stylesheet" href="./assets/css/jquery-ui.css">
+		<link rel="stylesheet" href="./assets/css/jquery.ui.datepicker.css">
+		<link rel="stylesheet" href="./assets/css/validationEngine.jquery.css">
 		<!-- ▲ cssコピーペースト部分 ▲ -->
 
 	</head>
 	<body>
-
 		<section class="contact">
-			<form action="./confirms.php" method="post" class="mailForm" id="form">
+			<form action="./form.php" method="post" class="mailForm" id="form">
 				<p>text : <input type="text" class="validate[required]"></p>
 				<p>text : <input type="text" class="datepicker validate[required]" readonly="readonly"></p>
 				<p>search : <input type="search"></p>
@@ -33,169 +32,38 @@
 				<p>range : <input type="range"></p>
 				<p>color : <input type="color"></p>
 				<p>checkbox : <input type="checkbox"></p>
-				<p>radio : <input type="radio" name="radio_test" id="radio_1"><label for="radio_1">radio_test_1</label><input type="radio" name="radio_test" id="radio_2"><label for="radio_2">radio_test_2</label><input type="radio" name="radio_test" id="radio_3"><label for="radio_3">radio_test_3</label><input type="radio" name="radio_test" id="radio_4"><label for="radio_4">radio_test_4</label></p>
-				<p>radio : <input type="radio" name="radio_test_1" id="radio_1_1"><label for="radio_1_1">radio_test_1</label><input type="radio" name="radio_test_1" id="radio_1_2"><label for="radio_1_2">radio_test_2</label><input type="radio" name="radio_test_1" id="radio_1_3"><label for="radio_1_3">radio_test_3</label><input type="radio" name="radio_test_1" id="radio_1_4"><label for="radio_1_4">radio_test_4</label></p>
+        <p>radio : 
+          <input type="radio" name="radio_test" id="radio_1"><label for="radio_1">radio_test_1</label>
+          <input type="radio" name="radio_test" id="radio_2"><label for="radio_2">radio_test_2</label>
+          <input type="radio" name="radio_test" id="radio_3"><label for="radio_3">radio_test_3</label>
+          <input type="radio" name="radio_test" id="radio_4"><label for="radio_4">radio_test_4</label>
+        </p>
+        <p>radio : 
+          <input type="radio" name="radio_test_1" id="radio_1_1"><label for="radio_1_1">radio_test_1</label>
+          <input type="radio" name="radio_test_1" id="radio_1_2"><label for="radio_1_2">radio_test_2</label>
+          <input type="radio" name="radio_test_1" id="radio_1_3"><label for="radio_1_3">radio_test_3</label>
+          <input type="radio" name="radio_test_1" id="radio_1_4"><label for="radio_1_4">radio_test_4</label>
+        </p>
 				<p>file : <input type="file"></p>
 				<p>submit : <input type="submit"></p>
 				<p>image : <input type="image"></p>
 				<p>reset : <input type="reset"></p>
 				<p>input　button : <input type="button"></p>
+        <p>button : <button type="reset"><img src="" alt="reset"></button></p>
 				<p>button : <button type="submit">aaaaaa</button></p>
-				<p>button : <button type="reset"><img src="" alt="reset"></button></p>
-				<!-- <table class="comTable">
-					<tr class="tr">
-						<th class="th"><span class="text">ご氏名</span><span class="must">必須</span></th>
-						<td class="td">
-							<input type="text" name="name" value="" id="name" class="name validate[required]" placeholder="佐藤　太郎">
-						</td>
-					</tr>
-					<tr class="tr">
-						<th class="th"><span class="text">フリガナ</span><span class="must">必須</span></th>
-						<td class="td">
-							<input type="text" name="phonetic" value="" id="phonetic" class="kana validate[required]" placeholder="サトウ　タロウ">
-						</td>
-					</tr>
-					<tr class="tr">
-						<th class="th"><span class="text">電話番号</span><span class="must">必須</span></th>
-						<td class="td">
-							<input type="tel" name="tel" value="" id="tel" class="tel validate[required,length[0,30],custom[phone]]" placeholder="03-3363-9814">
-						</td>
-					</tr>
-					<tr class="tr">
-						<th class="th"><span class="text">性別</span><span class="must">必須</span></th>
-						<td class="td tdStyle">
-							<input type="checkbox" id="male" class="validate[required] radio" name="sex" value="男性">
-							<label for="male">男性</label>
-							<input type="checkbox" id="female" class="validate[required] radio" name="sex" value="女性">
-							<label for="female">女性</label>
-						</td>
-					</tr>
-					<tr class="tr">
-						<th class="th"><span class="text">年代</span><span class="must">必須</span></th>
-						<td class="td tdStyle02">
-							<input type="radio" id="20old" class="validate[required] radio" name="old" value="20代">
-							<label for="20old">20代</label>
-							<input type="radio" id="30old" class="validate[required] radio" name="old" value="30代">
-							<label for="30old">30代</label>
-							<input type="radio" id="40old" class="validate[required] radio" name="old" value="40代">
-							<label for="40old">40代</label>
-							<input type="radio" id="50old" class="validate[required] radio" name="old" value="50代">
-							<label for="50old">50代</label>
-							<input type="radio" id="60old" class="validate[required] radio" name="old" value="60代以上">
-							<label for="60old">60代以上</label>
-						</td>
-					</tr>
-					<tr class="tr">
-						<th class="th"><span class="text">メールアドレス</span><span class="must">必須</span></th>
-						<td class="td">
-							<input type="email" name="mail" value="" id="mail" class="email validate[required,custom[email]]" placeholder="sato@example.com">
-						</td>
-					</tr>
-					<tr class="tr">
-						<th class="th"><span class="text">ご希望サロン</span><span class="must">必須</span></th>
-						<td class="td">
-							<select name="hope" class="hope validate[required]">
-								<option value="">選択してください</option>
-								<optgroup label="東京エリア">
-									<option value="新宿本店">新宿本店</option>
-									<option value="新宿レディース店">新宿レディース店</option>
-									<option value="上野店">上野店</option>
-								</optgroup>
-								<optgroup label="関東エリア（東京以外）">
-									<option value="横浜店">横浜店</option>
-									<option value="千葉店">千葉店</option>
-									<option value="大宮店">大宮店</option>
-									<option value="宇都宮店">宇都宮店</option>
-								</optgroup>
-								<optgroup label="中部エリア">
-									<option value="名古屋店">名古屋店</option>
-								</optgroup>
-								<optgroup label="関西エリア">
-									<option value="梅田店">梅田店</option>
-								</optgroup>
-								<optgroup label="中国エリア">
-									<option value="広島店">	広島店</option>
-								</optgroup>
-								<optgroup label="九州エリア">
-									<option value="博多店">博多店</option>
-								</optgroup>
-							</select>
-						</td>
-					</tr>
-					<tr class="tr">
-						<th class="th"><span class="text">ご希望日時<br class="pc">
-							（第一希望）</span><span class="must">必須</span></th>
-						<td class="td">
-							<input name="time_1" id="time_1" type="text" class="time_date datepicker validate[required]" placeholder="日付を選択">
-							<select name="time_1_select" id="time_1_select" class="time_hour validate[required]">
-								<option value="" selected="selected">時間</option>
-								<option value="9時">9時</option>
-								<option value="10時">10時</option>
-								<option value="11時">11時</option>
-								<option value="12時">12時</option>
-								<option value="13時">13時</option>
-								<option value="14時">14時</option>
-								<option value="15時">15時</option>
-								<option value="16時">16時</option>
-								<option value="17時">17時</option>
-							</select>
-							<span class="note">※平日は10時～17時、土・日・祝祭日は9時～16時の時間帯でご指定下さい。</span>
-						</td>
-					</tr>
-					<tr class="tr">
-						<th class="th"><span class="text">ご希望日時<br class="pc">
-							（第二希望）</span><span class="must">必須</span></th>
-						<td class="td">
-							<input name="time_2" id="time_2" type="text" class="time_date datepicker validate[required]" placeholder="日付を選択">
-							<select name="time_2_select" id="time_2_select" class="time_hour validate[required]">
-								<option value="" selected="selected">時間</option>
-								<option value="9時">9時</option>
-								<option value="10時">10時</option>
-								<option value="11時">11時</option>
-								<option value="12時">12時</option>
-								<option value="13時">13時</option>
-								<option value="14時">14時</option>
-								<option value="15時">15時</option>
-								<option value="16時">16時</option>
-								<option value="17時">17時</option>
-							</select>
-							<span class="note">※平日は10時～17時、土・日・祝祭日は9時～16時の時間帯でご指定下さい。</span>
-						</td>
-					</tr>
-					<tr class="tr">
-						<th class="th"><span class="text">その他</span></th>
-						<td class="td">
-							<textarea class="other" name="other" value=""></textarea>
-						</td>
-					</tr>
-					<tr class="tr">
-						<th class="th"><span class="text">個人情報について</span><span class="must">必須</span></th>
-						<td class="td">&nbsp;</td>
-					</tr>
-				</table>
-				<p class="text03">上記の内容に同意される方は、チェックボックスにチェックをしてください。</p>
-				<p class="agree">
-					<input type="radio" id="agree" class="validate[required]" name="agree">
-					<label for="agree">同意する</label>
-				</p>
-				<ul class="submit">
-					<li class="send">
-						<input class="button" type="submit" value="確認画面へ進む" name="__send__" />
-					</li>
-				</ul> -->
-			</form>
+      </form>
 		</section>
 		<!-- /.contact -->
 
-		<script src="//code.jquery.com/jquery-2.2.4.min.js"></script>
+		<!-- <script src="//code.jquery.com/jquery-2.2.4.min.js"></script> -->
 
 		<!-- ▼ jsコピーペースト部分 ▼ -->
-		<script src="./js/jquery-ui.js"></script>
-		<script src="./js/jquery.ui.datepicker.js"></script>
-		<script src="./js/jquery.ui.datepicker-ja.js"></script>
-		<script src="./js/jquery.validationEngine.js"></script>
-		<script src="./js/jquery.validationEngine-ja.js"></script>
-		<script src="./js/form.js"></script>
+		<script src="./assets/js/jquery-ui.js"></script>
+		<script src="./assets/js/jquery.ui.datepicker.js"></script>
+		<script src="./assets/js/jquery.ui.datepicker-ja.js"></script>
+		<script src="./assets/js/jquery.validationEngine.js"></script>
+		<script src="./assets/js/jquery.validationEngine-ja.js"></script>
+		<script src="./assets/js/form.js"></script>
 		<!-- ▲ jsコピーペースト部分 ▲ -->
 	</body>
 </html>
